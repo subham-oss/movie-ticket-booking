@@ -1,6 +1,6 @@
 import stripe from 'stripe';
-import Booking from '../models/booking';
-import { inngest } from '../inngest';
+import Booking from '../models/booking.js';
+import { inngest } from '../inngest/index.js';
 
 
 export const stripeWebhooks = async ( req, res)=>{
