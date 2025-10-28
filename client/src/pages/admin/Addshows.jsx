@@ -4,7 +4,7 @@ import Loading from "../../components/Loading";
 import Title from "../../components/admin/Title";
 import { CheckIcon, DeleteIcon, StarIcon } from "lucide-react";
 import { kconverter } from "../../lib/kconverter";
-import { useAppContext } from "../../../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
 const Addshows = () => {
   const {axios, getToken, user,image_base_url} = useAppContext();
@@ -24,6 +24,8 @@ const Addshows = () => {
       });
       if(data.success){
         setNowPlayingMovies(data.movies)
+        
+        
       }
     } catch (error) {
       console.error(error);
@@ -63,13 +65,13 @@ const Addshows = () => {
       }
 
       const showsInput = Object.entries(dateTimeSelection).map(([date, time])=>({date,time}))
-
       const payload = {
         movieId: selectesMovie,
         showsInput,
-        showprice: Number(showprice)
+        showPrice: Number(showprice)
       }
-
+      console.log(payload);
+      
       const {data} = await axios.post('/api/show/add',payload,{headers:{
         Authorization: `Bearer ${await getToken()}`
       }})
@@ -103,7 +105,7 @@ const Addshows = () => {
           {nowPlayingMovies.map((movie) => (
             <div
               key={movie.id}
-              onClick={() => setSelectesMovie(movie._id)}
+              onClick={() => setSelectesMovie(movie.id)}
               className={`relative max-w-40 cursor-pointer group-hover:not-hover:opacity-40 hover:-translate-y-1 transition duration-300`}
             >
               <div className="relative rounded-lg overflow-hidden">
@@ -122,7 +124,7 @@ const Addshows = () => {
                   </p>
                 </div>
               </div>
-              {selectesMovie === movie._id && (
+              {selectesMovie === movie.id && (
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-primary h-6 w-6 rounded">
                   <CheckIcon
                     className="w-4 h-4 text-white "

@@ -7,7 +7,7 @@ import calculateMIN from "../lib/calculateMin";
 import Dataselect from "../components/Dataselect";
 import MovieCard from "../components/MovieCard";
 import Loading from "../components/Loading";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 
 const MovieDetails = () => {
@@ -32,7 +32,7 @@ const MovieDetails = () => {
         dateTime: dummyDateTimeData,
       });
     } */
-
+    
       try {
         const {data} = await axios.get(`/api/show/${id}`)
         if(data.success){

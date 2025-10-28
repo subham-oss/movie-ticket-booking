@@ -5,37 +5,38 @@ import Loading from '../../components/Loading';
 import Title from '../../components/admin/Title';
 import BlurCircle from '../../components/BlurCircle';
 import { dateformat } from '../../lib/dateformat';
-import { useAppContext } from '../../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 
 const Dashboard = () => {
 
    const {axios, getToken, user,image_base_url} = useAppContext()
   const currency = import.meta.env.VITE_CURRENCY
 
-  const [dashboarddata , setDashboarddata] = useState({
-    totalBooking: 0,
+  const [dashboardData , setDashboarddata] = useState({
+    totalBookings: 0,
     totalRevenue: 0,
     activeShows:[],
     totalUser: 0
-  })
+  });
+
   const [loading, setloading] = useState(true);
    const dashboardCards = [
-    { title: 'Total Bookings', value: dashboarddata.totalBooking || "0", icon:
+    { title: 'Total Bookings', value: dashboardData.totalBookings || "0", icon:
       ChartLineIcon
     },
-    { title: 'Total Revenue', value: currency + dashboarddata.totalRevenue || "0", icon:
+    { title: 'Total Revenue', value: currency + dashboardData.totalRevenue || "0", icon:
       CircleDollarSignIcon
     },
-    { title: 'Active Shows', value: dashboarddata.activeShows.length || "0", icon:
+    { title: 'Active Shows', value: dashboardData.activeShows.length || "0", icon:
       PlayCircleIcon
     },
-    { title: 'Total Users', value: dashboarddata.totalUser || "0", icon:
+    { title: 'Total Users', value: dashboardData.totalUser || "0", icon:
       UserIcon
     }
    ]
 
    const fectchDashboardData = async () => {
-     /* setDashboarddata(dummyDashboardData);
+    /*  setDashboarddata(dummyDashboardData);
      setloading(false); */
 
      try {
@@ -83,7 +84,7 @@ const Dashboard = () => {
       <p className='mt-10 text-lg font-medium'>Active Shows</p>
       <div className='relative flex flex-wrap gap-6 mt-4 max-w-5xl'>
             <BlurCircle top='100px' left='-10%'/>
-            {dashboarddata.activeShows.map((show)=>(
+            {dashboardData.activeShows.map((show)=>(
               <div key={show._id} className='w-55 rounded-lg overflow-hidden h-full pb-3 bg-primary/10 border border-primary/20 hover:-translate-y-1 transition duration-300'>
                 <img src={image_base_url + show.movie.poster_path} alt="poster_path" className='h-60 w-full object-cover'/>
                 <p>{show.movie.title}</p>

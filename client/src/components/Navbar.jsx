@@ -3,8 +3,10 @@ import { assets } from "../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuIcon, SearchIcon, TicketIcon, XIcon } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 const Navbar = () => {
+
+
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { openSignIn } = useClerk();
@@ -51,7 +53,7 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0); setIsOpen(false);
           }}
-          to=""
+          to="/"
         >
           Theatres
         </Link>
@@ -59,11 +61,11 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0); setIsOpen(false);
           }}
-          to=""
+          to="/"
         >
           Releases
         </Link>
-        { favoriteMovies.length > 0 && <Link
+        { favoriteMovies?.length > 0 && <Link
           onClick={() => {
             scrollTo(0, 0); setIsOpen(false);
           }}

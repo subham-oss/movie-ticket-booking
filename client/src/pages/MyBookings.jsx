@@ -4,7 +4,7 @@ import Loading from '../components/Loading'
 import BlurCircle from '../components/BlurCircle'
 import calculateMIN from '../lib/calculateMin'
 import { dateformat } from '../lib/dateformat'
-import { useAppContext } from '../../context/AppContext'
+import { useAppContext } from '../context/AppContext'
 import { Link } from 'react-router-dom'
 
 const MyBookings = () => {

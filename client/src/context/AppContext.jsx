@@ -40,8 +40,11 @@ export const AppProvider = ({ children }) => {
   const fetchShows = async () => {
     try {
       const { data } = await axios.get("/api/show/all");
+      
       if (data.success) {
         setShows(data.shows);
+        
+        
       } else {
         toast.error(data.message);
       }
@@ -52,11 +55,13 @@ export const AppProvider = ({ children }) => {
 
   const fetchFavoriteMovies = async () => {
     try {
-      const { data } = await axios.get("/api/show/favorites", {
+      const { data } = await axios.get("/api/user/favorites", {
         headers: { Authorization: `Bearer ${await getToken()}` },
       });
       if(data.success){
         setFavoriteMovies(data.movies);
+        console.log(data.movies);
+        
       }
       else{
         toast.error(data.message);
@@ -85,7 +90,7 @@ export const AppProvider = ({ children }) => {
     
     };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return ( <AppContext.Provider value={value}>{children}</AppContext.Provider>);
 };
 
 export const useAppContext = () => useContext(AppContext);

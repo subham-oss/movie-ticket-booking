@@ -3,7 +3,7 @@ import { dummyBookingData } from '../../assets/assets';
 import Loading from '../../components/Loading';
 import Title from '../../components/admin/Title';
 import { dateformat } from '../../lib/dateformat';
-import { useAppContext } from '../../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 
 const ListBooking = () => {
 
@@ -20,6 +20,8 @@ const ListBooking = () => {
           headers: { Authorization: `Bearer ${await getToken()}` }
         })
         if(data.success){
+          console.log(data);
+          
           setbookings(data.bookings)
         } else {
           toast.error(data.message);
@@ -56,7 +58,7 @@ const ListBooking = () => {
             {
               bookings.map((item,index)=>(
                 <tr key={index} className='border-b border-primary/20 bg-primary/5 even:bg-primary/10'>
-                  <td className='p-2 min-w-45 pl-5'>{item.user.name}</td>
+                  <td className='p-2 min-w-45 pl-5'>{item.user?.name}</td>
                   <td className='p-2'>{item.show.movie.title}</td>
                   <td className='p-2'>{dateformat(item.show.showDateTime)}</td>
                   <td className='p-2'>{Object.keys(item.bookedSeats).map(seat => item.bookedSeats[seat]).join(', ')}</td>

@@ -14,7 +14,7 @@ import Dashboard from './pages/admin/Dashboard'
 import Addshows from './pages/admin/Addshows'
 import ListShow from './pages/admin/ListShow'
 import ListBooking from './pages/admin/ListBooking'
-import { useAppContext } from '../context/AppContext'
+import { useAppContext } from './context/AppContext'
 import { SignIn } from '@clerk/clerk-react'
 import Loading from './components/Loading'
 const App = () => {
@@ -22,7 +22,6 @@ const App = () => {
   const isadmin = location.pathname.startsWith('/admin');
 
   const {user} = useAppContext();
-  console.log(isadmin)
   return (
     <>
     <Toaster/>

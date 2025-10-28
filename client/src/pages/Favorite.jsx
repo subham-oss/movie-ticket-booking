@@ -2,7 +2,9 @@ import React from 'react'
 import { dummyShowsData } from "../assets/assets";
 import MovieCard from "../components/MovieCard";
 import BlurCircle from "../components/BlurCircle";
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext } from '../context/AppContext';
+
+
 const Favorite = () => {
   const { favoriteMovies } = useAppContext();
   return favoriteMovies.length > 0 ? (

@@ -1,7 +1,7 @@
 import { StarIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import calculateMIN from "../lib/calculateMin";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
